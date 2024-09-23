@@ -19,7 +19,7 @@ if (Test-Path -Path $destinationPath) {
 }
 
 # Path to the image file
-$imagePath = "C:\mbm\TAFEDesktop"
+$imagePath = "C:\mbm\TAFEDesktop.png"
 
 # Function to set wallpaper
 function Set-Wallpaper {
