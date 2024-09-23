@@ -1,5 +1,5 @@
 # Path to the image file
-$imagePath = "C:\mbm\background.jpg"
+$imagePath = "C:\mbm\TAFE Computer Course_Desktop (2).png"
 
 # Function to set wallpaper
 function Set-Wallpaper {
