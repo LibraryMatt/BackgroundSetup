@@ -18,8 +18,11 @@ if (Test-Path -Path $destinationPath) {
     Write-Host "Failed to download file."
 }
 
+# Wait for 15 seconds
+Start-Sleep -Seconds 15
+
 # Path to the image file
-$imagePath = "C:\mbm\TAFEDesktop.png"
+$imagePath = $destinationPath
 
 # Function to set wallpaper
 function Set-Wallpaper {
