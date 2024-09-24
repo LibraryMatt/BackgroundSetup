@@ -1,5 +1,28 @@
 # Define variables
-$batFileUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main"  # Replace with the actual URL of your .bat file
+$repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/TAFEDesktop.png?raw=true"
+$destinationPath1 = "C:\mbm\TAFEDesktop.png"
+
+# Create the destination directory if it doesn't exist
+$destinationDir = Split-Path -Path $destinationPath1 -Parent
+if (-not (Test-Path -Path $destinationDir)) {
+    New-Item -ItemType Directory -Path $destinationDir -Force
+}
+
+# Download the file
+Invoke-WebRequest -Uri $repoUrl -OutFile $destinationPath1
+
+# Confirm download
+if (Test-Path -Path $destinationPath1) {
+    Write-Host "File downloaded successfully to $destinationPath1"
+} else {
+    Write-Host "Failed to download file."
+}
+
+# Wait for 5 seconds
+Start-Sleep -Seconds 5
+
+# Define variables
+$batFileUrl = "https://raw.githubusercontent.com/LibraryMatt/BackgroundSetup/refs/heads/main/SetWallpaper.bat"  # Replace with the actual URL of your .bat file
 $destinationPath = "C:\mbm\SetWallpaper.bat"
 
 # Create the destination directory if it doesn't exist
