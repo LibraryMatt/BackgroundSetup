@@ -1,17 +1,20 @@
-Lambton eftpos
-LB-Kisok1 Workstation ID, TerminalID the same???? cause problem
+@echo off
+setlocal
 
-12sa shelf settings Email support. 120000 delay
-Anu Sharma 22300007530135 NEW MONITOR ACCOUNT - emailed
-CHECK DINO EXHIBIT PRICING - emailed
-WD1 MONITOR KIOSK NOT CREDITING PATRONS, WHO AND WHEN? - logged
-EMAIL CARA RE LEAVE - emailed
+:: Define the path to the image
+set "wallpaperPath=C:\mbm\TAFEDesktop.png"
 
-MAYFIELD HOLDS
+:: Check if the file exists
+if not exist "%wallpaperPath%" (
+    echo Wallpaper file does not exist: %wallpaperPath%
+    exit /b
+)
 
-SMS WORDING TEST WHEN UPDATED
+:: Set the wallpaper using the registry
+reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "%wallpaperPath%" /f
 
-3D PRINTER-MOVE TO 1ST FLOOR, PRINT. IS IT ON SAME CIRCUIT AS MONITOR KIOSK??
+:: Update the desktop with the new wallpaper
+RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters
 
-
-TAFE PUBLIC PCs
+echo Wallpaper has been set to %wallpaperPath%
+endlocal
