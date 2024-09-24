@@ -1,6 +1,6 @@
 # Define variables
 $repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/TAFEDesktop.png?raw=true"
-$destinationPath = "C:\Users\Public\Pictures\TAFEDesktop.png"
+$destinationPath = "C:\mbm\TAFEDesktop.png"
 
 # Create the destination directory if it doesn't exist
 $destinationDir = Split-Path -Path $destinationPath -Parent
@@ -18,8 +18,8 @@ if (Test-Path -Path $destinationPath) {
     Write-Host "Failed to download file."
 }
 
-# Wait for 15 seconds
-Start-Sleep -Seconds 15
+# Wait for 10 seconds
+Start-Sleep -Seconds 10
 
 # Function to set wallpaper for the Public user
 function Set-WallpaperForPublicUser {
