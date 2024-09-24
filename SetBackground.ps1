@@ -18,16 +18,17 @@ if (Test-Path -Path $destinationPath) {
     Write-Host "Failed to download file."
 }
 
-# Wait for 10 seconds
-Start-Sleep -Seconds 10
+# Wait for 15 seconds
+Start-Sleep -Seconds 15
 
-# Function to set wallpaper for the Public user
-function Set-WallpaperForPublicUser {
+# Path to the image file
+$imagePath = $destinationPath
+
+# Function to set wallpaper
+function Set-Wallpaper {
     param (
         [string]$path
     )
-
-    # Define the User32 class for setting the wallpaper
     $user32 = Add-Type -TypeDefinition @"
     using System;
     using System.Runtime.InteropServices;
@@ -42,9 +43,9 @@ function Set-WallpaperForPublicUser {
     $SPIF_UPDATEINIFILE = 1
     $SPIF_SENDCHANGE = 2
 
-    # Set wallpaper for the Public user
+    # Set wallpaper
     $user32::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $path, $SPIF_UPDATEINIFILE -bor $SPIF_SENDCHANGE)
 }
 
-# Call the function to set the wallpaper for the Public user
-Set-WallpaperForPublicUser -path $destinationPath
+# Call the function to set the wallpaper
+Set-Wallpaper -path $imagePath
