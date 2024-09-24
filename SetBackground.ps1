@@ -1,6 +1,6 @@
 # Define variables
 $repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/TAFEDesktop.png?raw=true"
-$destinationPath = "C:\mbm\TAFEDesktop.png"
+$destinationPath = "C:\Users\Public\Pictures\TAFEDesktop.png"
 
 # Create the destination directory if it doesn't exist
 $destinationDir = Split-Path -Path $destinationPath -Parent
@@ -21,14 +21,13 @@ if (Test-Path -Path $destinationPath) {
 # Wait for 15 seconds
 Start-Sleep -Seconds 15
 
-# Path to the image file
-$imagePath = $destinationPath
-
-# Function to set wallpaper
-function Set-Wallpaper {
+# Function to set wallpaper for the Public user
+function Set-WallpaperForPublicUser {
     param (
         [string]$path
     )
+
+    # Define the User32 class for setting the wallpaper
     $user32 = Add-Type -TypeDefinition @"
     using System;
     using System.Runtime.InteropServices;
@@ -43,9 +42,9 @@ function Set-Wallpaper {
     $SPIF_UPDATEINIFILE = 1
     $SPIF_SENDCHANGE = 2
 
-    # Set wallpaper
+    # Set wallpaper for the Public user
     $user32::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $path, $SPIF_UPDATEINIFILE -bor $SPIF_SENDCHANGE)
 }
 
-# Call the function to set the wallpaper
-Set-Wallpaper -path $imagePath
+# Call the function to set the wallpaper for the Public user
+Set-WallpaperForPublicUser -path $destinationPath
