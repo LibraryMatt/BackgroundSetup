@@ -1,3 +1,5 @@
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
 # Define variables
 $repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/TAFEDesktop.png?raw=true"
 $destinationPath = "C:\mbm\TAFEDesktop.png"
