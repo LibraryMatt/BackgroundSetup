@@ -1,14 +1,3 @@
-# Check if running as Administrator
-function Test-IsElevated {
-    return ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-}
-
-# Relaunch script with elevated permissions if not already elevated
-if (-not (Test-IsElevated)) {
-    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
-    exit
-}
-
 # Define variables
 $repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/TAFEDesktop.png?raw=true"
 $destinationPath = "C:\mbm\TAFEDesktop.png"
@@ -29,16 +18,17 @@ if (Test-Path -Path $destinationPath) {
     Write-Host "Failed to download file."
 }
 
-# Wait for 15 seconds
-Start-Sleep -Seconds 15
+# Wait for 5 seconds
+Start-Sleep -Seconds 5
 
-# Function to set wallpaper for all users
-function Set-WallpaperForAllUsers {
+# Path to the image file
+$imagePath = $destinationPath
+
+# Function to set wallpaper
+function Set-Wallpaper {
     param (
         [string]$path
     )
-
-    # Set the wallpaper for the current user
     $user32 = Add-Type -TypeDefinition @"
     using System;
     using System.Runtime.InteropServices;
@@ -53,15 +43,9 @@ function Set-WallpaperForAllUsers {
     $SPIF_UPDATEINIFILE = 1
     $SPIF_SENDCHANGE = 2
 
-    # Set wallpaper for the current user
+    # Set wallpaper
     $user32::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $path, $SPIF_UPDATEINIFILE -bor $SPIF_SENDCHANGE)
-
-    # Update the registry for all users
-    $regPath = "HKU\.DEFAULT\Control Panel\Desktop"
-    Set-ItemProperty -Path $regPath -Name "Wallpaper" -Value $path
-    Set-ItemProperty -Path $regPath -Name "TileWallpaper" -Value "0"
-    Set-ItemProperty -Path $regPath -Name "WallpaperStyle" -Value "2"  # 2 for fill, 1 for stretch, etc.
 }
 
 # Call the function to set the wallpaper
-Set-WallpaperForAllUsers -path $destinationPath
+Set-Wallpaper -path $imagePath
