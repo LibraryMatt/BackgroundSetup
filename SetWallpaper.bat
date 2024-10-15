@@ -2,7 +2,7 @@
 setlocal
 
 :: Define the path to the image
-set "wallpaperPath=C:\mbm\TAFEDesktop.png"
+set "wallpaperPath=C:\mbm\img0.png"
 
 :: Check if the file exists
 if not exist "%wallpaperPath%" (
