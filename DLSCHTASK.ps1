@@ -1,7 +1,7 @@
 # Define variables
 $repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/schtask.ps1?raw=true"
 $destinationPath = "C:\mbm\schtask.ps1"
-$repoUrl1 = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/setBackground.ps1?raw=true"
+$repoUrl1 = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/SetBackground.ps1?raw=true"
 $destinationPath1 = "C:\mbm\setBackground.ps1"
 
 
