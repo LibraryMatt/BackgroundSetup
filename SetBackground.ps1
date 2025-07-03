@@ -1,6 +1,6 @@
 # Define variables
-$repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/img0.png?raw=true"
-$destinationPath = "C:\mbm\img0.png"
+$repoUrl = "https://github.com/LibraryMatt/BackgroundSetup/blob/main/img01.png?raw=true"
+$destinationPath = "C:\mbm\img01.png"
 
 # Create the destination directory if it doesn't exist
 $destinationDir = Split-Path -Path $destinationPath -Parent
